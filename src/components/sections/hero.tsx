@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { motion, Variants } from "framer-motion";
 import { PlayCircle } from "lucide-react";
 import { NeonButton } from "@/components/ui/neon-button";
+import { mediaKitData } from "@/data/media-kit-data";
 
 // Lazy load the Spline component to avoid blocking initial page paint
 const SplineHeroScene = dynamic(() => import("@/components/3d/spline-hero-scene").then(mod => mod.SplineHeroScene), {
@@ -50,14 +51,14 @@ export function Hero() {
         className="w-full lg:w-1/2 z-10 flex flex-col justify-center space-y-8 pr-0 lg:pr-12 mt-20 lg:mt-0"
       >
         <motion.div variants={itemVariants} className="space-y-2">
-          <p className="font-headline text-primary-fixed-dim uppercase tracking-[0.2em] text-sm font-bold opacity-80 pl-1">SYS.INIT // IDENTITY_VERIFIED</p>
+          <p className="font-headline text-primary-fixed-dim uppercase tracking-[0.2em] text-sm font-bold opacity-80 pl-1">{mediaKitData.profile.tagline}</p>
           <h1 className="font-headline text-6xl lg:text-8xl font-black tracking-tighter text-on-surface leading-none text-gradient-primary py-2">
-            @NeoCyber<br />Streamer
+            {mediaKitData.profile.handle}
           </h1>
         </motion.div>
 
         <motion.p variants={itemVariants} className="font-body text-on-surface-variant text-lg lg:text-xl max-w-lg leading-relaxed border-l-2 border-primary/20 pl-4">
-          Digital Creator & Tech Streamer exploring the bleeding edge of interactive entertainment. Forging communities in the digital void.
+          {mediaKitData.profile.description}
         </motion.p>
 
         <motion.div variants={itemVariants} className="flex flex-wrap gap-4 pt-4">

@@ -48,22 +48,6 @@ export default function RootLayout({
         <main className="flex-grow pt-20">
           {children}
         </main>
-
-        {/* Footer */}
-        <footer className="w-full border-t border-white/5 mt-20 bg-neutral-950" id="connect">
-          <div className="max-w-7xl mx-auto px-8 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="text-cyan-400 font-bold font-headline">KINETIC_ARCHIVE</div>
-            <div className="flex gap-6">
-              <a className="font-['Inter'] text-xs tracking-widest uppercase text-neutral-500 hover:text-cyan-400 transition-colors cursor-pointer opacity-80 hover:opacity-100" href="#">INSTAGRAM</a>
-              <a className="font-['Inter'] text-xs tracking-widest uppercase text-neutral-500 hover:text-cyan-400 transition-colors cursor-pointer opacity-80 hover:opacity-100" href="#">TIKTOK</a>
-              <a className="font-['Inter'] text-xs tracking-widest uppercase text-neutral-500 hover:text-cyan-400 transition-colors cursor-pointer opacity-80 hover:opacity-100" href="#">TWITCH</a>
-              <a className="font-['Inter'] text-xs tracking-widest uppercase text-neutral-500 hover:text-cyan-400 transition-colors cursor-pointer opacity-80 hover:opacity-100" href="#">TERMS</a>
-            </div>
-            <div className="font-['Inter'] text-xs tracking-widest uppercase text-neutral-500">
-              © 2024 NEURAL_ENTITY. ENCODED FOR THE VOID.
-            </div>
-          </div>
-        </footer>
       </body>
     </html>
   );

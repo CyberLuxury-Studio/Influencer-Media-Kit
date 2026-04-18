@@ -2,9 +2,9 @@
 
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import React, { useRef, useState } from "react";
-
+import React, { useState } from "react";
 import { HTMLMotionProps } from "framer-motion";
+import { useMousePosition } from "@/hooks/use-mouse-position";
 
 interface BentoCardProps extends Omit<HTMLMotionProps<"div">, "children"> {
   children: React.ReactNode;
@@ -13,37 +13,11 @@ interface BentoCardProps extends Omit<HTMLMotionProps<"div">, "children"> {
 }
 
 export function BentoCard({ children, className, glowColor = "primary", onMouseMove, onFocus, onBlur, onMouseEnter, onMouseLeave, ...props }: BentoCardProps) {
-  const divRef = useRef<HTMLDivElement>(null);
+  const [divRef, position, isHovered, trackMouse, trackEnter, trackLeave] = useMousePosition<HTMLDivElement>();
   const [isFocused, setIsFocused] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [opacity, setOpacity] = useState(0);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!divRef.current || isFocused) return;
-
-    const div = divRef.current;
-    const rect = div.getBoundingClientRect();
-
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-  };
-
-  const handleFocus = () => {
-    setIsFocused(true);
-    setOpacity(1);
-  };
-
-  const handleBlur = () => {
-    setIsFocused(false);
-    setOpacity(0);
-  };
-
-  const handleMouseEnter = () => {
-    setOpacity(1);
-  };
-
-  const handleMouseLeave = () => {
-    setOpacity(0);
-  };
+  const handleFocus = () => setIsFocused(true);
+  const handleBlur = () => setIsFocused(false);
 
   const colorMap = {
     primary: "rgba(0, 240, 255, 0.15)", // Cyan
@@ -54,7 +28,7 @@ export function BentoCard({ children, className, glowColor = "primary", onMouseM
     <motion.div
       ref={divRef}
       onMouseMove={(e) => {
-        handleMouseMove(e as unknown as React.MouseEvent<HTMLDivElement>);
+        if (!isFocused) trackMouse(e as unknown as React.MouseEvent<HTMLDivElement>);
         if (onMouseMove) onMouseMove(e);
       }}
       onFocus={(e) => {
@@ -66,11 +40,11 @@ export function BentoCard({ children, className, glowColor = "primary", onMouseM
         if (onBlur) onBlur(e);
       }}
       onMouseEnter={(e) => {
-        handleMouseEnter();
+        trackEnter();
         if (onMouseEnter) onMouseEnter(e);
       }}
       onMouseLeave={(e) => {
-        handleMouseLeave();
+        trackLeave();
         if (onMouseLeave) onMouseLeave(e);
       }}
       className={cn(
@@ -84,7 +58,7 @@ export function BentoCard({ children, className, glowColor = "primary", onMouseM
       <div
         className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
         style={{
-          opacity,
+          opacity: isHovered || isFocused ? 1 : 0,
           background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, ${colorMap[glowColor]}, transparent 40%)`,
         }}
       />
