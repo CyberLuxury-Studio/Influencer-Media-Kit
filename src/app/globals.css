@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #131313;
+  --color-surface: #131313;
+  --color-surface-container-low: #1c1b1b;
+  --color-surface-container-highest: #353534;
+  --color-primary: #00f0ff;
+  --color-primary-container: #00f0ff;
+  --color-primary-fixed-dim: #00dbe9;
+  --color-secondary: #ffb3b2;
+  --color-secondary-container: #ff525c;
+  --color-on-surface: #e5e2e1;
+  --color-on-surface-variant: #b9cacb;
+  --color-on-primary: #00363a;
+
+  --font-headline: var(--font-space-grotesk), sans-serif;
+  --font-body: var(--font-inter), sans-serif;
+  --font-label: var(--font-inter), sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: #050505;
+    color: var(--color-on-surface);
+  }
+}
+
+@layer components {
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .neon-glow-primary {
+    transition: all 0.3s ease;
+  }
+
+  .neon-glow-primary:hover {
+    border-color: rgba(0, 240, 255, 0.5);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+  }
+
+  .text-gradient-primary {
+    background: linear-gradient(to right, #dbfcff, #00dbe9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .btn-gradient {
+    background: linear-gradient(135deg, #00f0ff, #006970);
+    color: #00363a;
+    border: none;
+  }
+
+  .btn-glass {
+    background-color: rgba(19, 19, 19, 0.5);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #e5e2e1;
+  }
+
+  .btn-glass:hover {
+    border-color: #00f0ff;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+  }
+}
