@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { mediaKitData } from "@/data/media-kit-data";
+import { GlassPanel } from "@/components/ui/glass-panel";
 
 export function ContentShowcase() {
   return (
@@ -43,7 +44,7 @@ export function ContentShowcase() {
               className="w-[300px] md:w-[400px] shrink-0 snap-start group cursor-pointer"
             >
               {/* Image Container */}
-              <div className="relative aspect-video rounded-2xl overflow-hidden glass-panel mb-6 border border-white/10 group-hover:border-secondary/50 transition-colors duration-300">
+              <GlassPanel className="relative aspect-video rounded-2xl overflow-hidden mb-6 border border-white/10 group-hover:border-secondary/50 transition-colors duration-300">
                 <div className="absolute inset-0 bg-surface-dim/50 group-hover:bg-transparent transition-colors z-10 duration-500"></div>
                 <img
                   src={item.imageUrl}
@@ -57,7 +58,7 @@ export function ContentShowcase() {
                 <div className="absolute top-4 left-4 z-20 bg-black/60 backdrop-blur-md px-3 py-1 rounded border border-white/10">
                   <span className="font-label text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">{item.type}</span>
                 </div>
-              </div>
+              </GlassPanel>
 
               {/* Text Content */}
               <div>

@@ -5,6 +5,7 @@ import { motion, Variants } from "framer-motion";
 import { PlayCircle } from "lucide-react";
 import { NeonButton } from "@/components/ui/neon-button";
 import { mediaKitData } from "@/data/media-kit-data";
+import { GlassPanel } from "@/components/ui/glass-panel";
 
 // Lazy load the Spline component to avoid blocking initial page paint
 const SplineHeroScene = dynamic(() => import("@/components/3d/spline-hero-scene").then(mod => mod.SplineHeroScene), {
@@ -15,10 +16,10 @@ const SplineHeroScene = dynamic(() => import("@/components/3d/spline-hero-scene"
         <div className="absolute inset-0 rounded-full border border-primary/20 animate-[spin_60s_linear_infinite]"></div>
         <div className="absolute inset-4 rounded-full border border-secondary-container/20 animate-[spin_40s_linear_infinite_reverse]"></div>
         <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent rounded-full blur-3xl mix-blend-screen"></div>
-        <div className="absolute inset-1/4 rounded-2xl glass-panel flex flex-col items-center justify-center border-primary/30 shadow-[0_0_50px_rgba(0,240,255,0.1)]">
+        <GlassPanel className="absolute inset-1/4 rounded-2xl flex flex-col items-center justify-center border-primary/30 shadow-[0_0_50px_rgba(0,240,255,0.1)]">
           <span className="material-symbols-outlined text-6xl text-primary opacity-50 mb-2 animate-pulse">sync</span>
           <span className="font-headline text-sm text-primary tracking-widest uppercase">Initializing 3D Asset</span>
-        </div>
+        </GlassPanel>
       </div>
     </div>
   )

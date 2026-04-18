@@ -1,10 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
-import { HTMLMotionProps } from "framer-motion";
+import { HTMLMotionProps, motion } from "framer-motion";
 import { useMousePosition } from "@/hooks/use-mouse-position";
+import { GlassPanel } from "@/components/ui/glass-panel";
 
 interface BentoCardProps extends Omit<HTMLMotionProps<"div">, "children"> {
   children: React.ReactNode;
@@ -24,8 +24,10 @@ export function BentoCard({ children, className, glowColor = "primary", onMouseM
     secondary: "rgba(255, 0, 60, 0.15)", // Magenta
   };
 
+  const MotionGlassPanel = motion.create(GlassPanel);
+
   return (
-    <motion.div
+    <MotionGlassPanel
       ref={divRef}
       onMouseMove={(e) => {
         if (!isFocused) trackMouse(e as unknown as React.MouseEvent<HTMLDivElement>);
@@ -48,7 +50,7 @@ export function BentoCard({ children, className, glowColor = "primary", onMouseM
         if (onMouseLeave) onMouseLeave(e);
       }}
       className={cn(
-        "relative overflow-hidden glass-panel rounded-2xl transition-all duration-300",
+        "relative overflow-hidden rounded-2xl transition-all duration-300",
         "border border-white/5",
         className
       )}
@@ -67,6 +69,6 @@ export function BentoCard({ children, className, glowColor = "primary", onMouseM
       <div className="relative z-10 w-full h-full">
         {children}
       </div>
-    </motion.div>
+    </MotionGlassPanel>
   );
 }
