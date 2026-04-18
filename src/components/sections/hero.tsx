@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { motion, Variants } from "framer-motion";
 import { PlayCircle } from "lucide-react";
+import { NeonButton } from "@/components/ui/neon-button";
 
 // Lazy load the Spline component to avoid blocking initial page paint
 const SplineHeroScene = dynamic(() => import("@/components/3d/spline-hero-scene").then(mod => mod.SplineHeroScene), {
@@ -60,13 +61,13 @@ export function Hero() {
         </motion.p>
 
         <motion.div variants={itemVariants} className="flex flex-wrap gap-4 pt-4">
-          <button className="btn-gradient px-8 py-4 rounded-lg font-headline font-bold uppercase tracking-wider hover:shadow-[0_0_30px_rgba(0,240,255,0.4)] transition-shadow">
+          <NeonButton variant="primary">
             INITIATE COLLAB
-          </button>
-          <button className="btn-glass px-8 py-4 rounded-lg font-headline font-bold uppercase tracking-wider flex items-center gap-2 group">
+          </NeonButton>
+          <NeonButton variant="glass">
             <PlayCircle className="text-primary w-5 h-5 group-hover:scale-110 transition-transform" />
             VIEW REEL
-          </button>
+          </NeonButton>
         </motion.div>
       </motion.div>
 
